@@ -1,0 +1,85 @@
+<html>
+
+
+<head>
+<title>
+Survey App by Omkar
+</title>
+<script src="../../../../1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="css/mySurveyApp.css">
+</head>
+
+<body ng-app="myApp">
+
+	<center>
+		<div class="mainBodyDiv">
+			<div class="headerDiv">
+				<p class="bannerHeading">MySurvey<span class="bannerTagLine"> ... your personal survey App !!!</span> </p>
+			</div>
+			
+			<div class="subBodyDiv" ng-controller="myCntrl2 as c2">
+
+					<div class="pageTopic">
+						List of Surveys to Participate
+					</div>
+					<table class="surveyListTable">
+						<tr class="surveyListTableHeader">
+							<th class="surveyListTableHeaderCell">
+								Survey #
+							</th>
+							<th class="surveyListTableHeaderCell">
+								Survey Title
+							</th>
+							<th  class="surveyListTableHeaderCell">
+								Survey Status
+							</th>
+							<th  class="surveyListTableHeaderCell">
+								Participate
+							</th>
+						</tr>
+						
+						
+						<tr ng-repeat="survey in c2.listOfSurveys">
+							<td ng-if="$even">{{$index + 1}}</td>
+							<td ng-if="$odd" class="oddRecord">{{$index + 1}}</td>
+							
+							<td ng-if="$even" style="text-align : left">
+								{{survey.surveyTitle}}
+							</td>
+							<td ng-if="$odd" class="oddRecord" style="text-align : left">
+								{{survey.surveyTitle}}
+							</td>
+							
+							<td ng-if="$even">
+								{{survey.surveyStatus}}
+							</td>
+							<td ng-if="$odd" class="oddRecord">
+								{{survey.surveyStatus}}
+							</td>
+							
+							<td ng-if="$even">
+								<input type="button" value="Participate !" ng-disabled="c2.isSurveyParticipitable(survey)" />
+							</td>
+							<td ng-if="$odd" class="oddRecord">
+								<input type="button" value="Participate !" ng-disabled="c2.isSurveyParticipitable(survey)"/>
+							</td>
+							
+							
+						</tr>
+						
+					</table>
+				
+				
+			</div>
+		</div>
+	<center>
+	
+	<br>
+	<br>
+	
+</body>
+
+<script src="js/mySurveyApp.js">	
+</script>
+
+</html>

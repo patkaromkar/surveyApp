@@ -1,3 +1,4 @@
+/*****************************************CSS for login screen S1 ***************************************/
 div.mainBodyDiv{
 	font-family : verdana;
 	//border : 1px solid black;
@@ -38,3 +39,41 @@ table.loginFormTable {
 	border-radius: 12px;
 	padding : 20px;
 }
+
+/*****************************************CSS for login screen S1 ***************************************/
+
+/*****************************************CSS for login screen S2 ***************************************/
+table.surveyListTable {
+	border-collapse : collapsed;
+	border : 2px dotted red;
+	border-radius: 12px;
+	//padding : 22px;
+	background-color : #f8ff6c;
+}
+
+table tr.surveyListTableHeader {
+	background-color : orange;
+	
+}
+
+table tr th.surveyListTableHeaderCell {
+	align : center;
+}
+
+table tr td.oddRecord {
+	background-color : #feb654;
+	text-align : center;
+	align : center;
+}
+
+table tr td{
+	text-align : center;
+	align : center;
+}
+
+div.pageTopic {
+	font-style : bold;
+	font-size : 25px;
+	padding : 15px;
+}
+/*****************************************CSS for login screen S2 ***************************************/
