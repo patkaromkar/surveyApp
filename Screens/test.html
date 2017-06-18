@@ -1,0 +1,103 @@
+<html>
+
+
+<head>
+<title>
+Angu App by Omkar
+</title>
+<script src="../../../1.4.8/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+	<div ng-controller="myCntrl1">
+		<form name="mySALoginForm" novalidate>
+			Username :  <input type = "text" name="uname" ng-model="uName" required/>
+			<br>
+			<input type="submit" value="Login" ng-click="submitLogin()" />
+			<br>
+			<br>
+		<br>
+		<br>
+			<input type="submit" value="Another Login" ng-click="someMeth(mySALoginForm)" />
+		</form>
+		<br>
+		<br>
+		<br>
+		{{isCredsInvalid}}	
+	</div>
+
+	<br>
+	<br>
+	
+	<div ng-controller="myCntrl2 as c2">
+		<form name="mySALoginForm2" novalidate>
+			Username :  <input type = "text" name="uname" ng-model="c2.uName" required/>
+			<br>
+			<input type="submit" value="Login" ng-click="c2.submitLogin2()" />
+			<br>
+			<br>
+		<br>
+		<br>
+			<input type="submit" value="Another Login" ng-click="c2.someMeth2(mySALoginForm2)" />
+		</form>
+		<br>
+		<br>
+		<br>
+		<div id="demo">
+			
+		</div>	
+	</div>
+	
+</body>
+
+<script>
+	var app = angular.module("myApp",[]);
+	var myVal = "Omkar";
+	app.controller("myCntrl1", ctrl1);
+	
+	function ctrl1($scope) {
+		console.log($scope);
+		$scope.isCredsInvalid = false;
+		/*$scope.submitLogin = function () {
+			console.log("test "+($scope));
+		};*/
+		$scope.submitLogin = login;
+		myVal = $scope;
+		console.log("Something i have done");
+		console.log(myVal);
+		
+		$scope.someMeth = myMeth;
+	}
+	
+	function login() {
+			console.log("test "+(myVal.mySALoginForm.$submitted));
+	};
+	
+	function myMeth(myVal) {
+		console.log("myMeth "+myVal.$submitted);
+	}
+	
+	/***************************************************************************************/
+	app.controller("myCntrl2", ctrl2);
+	
+	function ctrl2($scope) {
+		this.submitLogin2 = login2;
+		this.someMeth2 = myMeth2;
+	}
+	
+	function login2() {
+			console.log("test "+(myVal.mySALoginForm.$submitted));
+	};
+	
+	function myMeth2(myForm) {
+		console.log("myMeth2 "+myForm.$submitted);
+		var props = "";
+		for(x in myForm) {
+			props += x + " : "+myForm[x]+" | {{"+myForm[x]+"}} <br>";
+		}
+		document.getElementById("demo").innerHTML = props;
+	}
+</script>
+
+</html>

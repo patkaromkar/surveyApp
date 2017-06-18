@@ -1,0 +1,69 @@
+<html>
+
+
+<head>
+<title>
+Survey App by Omkar
+</title>
+<script src="../../../1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="css/mySurveyApp.css">
+</head>
+
+<body ng-app="myApp">
+
+	<center>
+		<div class="mainBodyDiv">
+			<div class="headerDiv">
+				<p class="bannerHeading">MySurvey<span class="bannerTagLine"> ... your personal survey App !!!</span> </p>
+			</div>
+			
+			<div class="subBodyDiv" ng-controller="myCntrl1 as c1">
+
+				<form name="mySALoginForm" novalidate>
+					<table class="loginFormTable" cellpadding="12px">
+						<th colspan="2">Login for survey<th>
+						<tr>
+							<td>Username : </td>
+							<td>
+								<input type = "text" name="uname" ng-model="c1.uName" required/>
+								<span style="color:red" 
+									ng-show="(!mySALoginForm.uname.$untouched && mySALoginForm.uname.$invalid) || (mySALoginForm.$submitted && mySALoginForm.uname.$invalid)">
+									Username is required !!
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Password : </td>
+							<td>
+								<input type = "password" name="pwd" ng-model="c1.passWd" required/>
+								<span style="color:red" 
+									ng-show="(!mySALoginForm.pwd.$untouched && mySALoginForm.pwd.$invalid) || (mySALoginForm.$submitted && mySALoginForm.pwd.$invalid)">
+									Password is required !!
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><input type="submit" value="Login" ng-click="c1.submitLogin()" /></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<span style="color:red" ng-show="c1.isCredsInvalid">Invalid Username or Password... Please Try Again !</span>
+							</td>
+						</tr>
+					</table>
+				</form>
+				
+			</div>
+		</div>
+	<center>
+	
+	<br>
+	<br>
+	
+</body>
+
+<script src="js/mySurveyApp.js">	
+</script>
+
+</html>
