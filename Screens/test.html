@@ -5,7 +5,7 @@
 <title>
 Angu App by Omkar
 </title>
-<script src="../../../1.4.8/angular.min.js"></script>
+<script src="../../../../1.4.8/angular.min.js"></script>
 </head>
 
 <body ng-app="myApp">
@@ -97,6 +97,8 @@ Angu App by Omkar
 			props += x + " : "+myForm[x]+" | {{"+myForm[x]+"}} <br>";
 		}
 		document.getElementById("demo").innerHTML = props;
+		console.log(myForm.uname.$dirty);
+		console.log(myForm.uname.$viewValue);
 	}
 </script>
 
