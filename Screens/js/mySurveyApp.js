@@ -17,19 +17,20 @@ var listOfSurveys = [
 /************************************Java script for Login Screen S1****************************************/
 /***********************************************************************************************************/
 var app = angular.module("myApp",[]);
-app.controller("myCntrl1", ctrl1);
+app.controller("myCntrl1", ['$http', ctrl1]);
 
-function ctrl1() {
+function ctrl1($http) {
 	console.log("Start of ctrl1");
 	this.submitLogin = login;
 	this.uName = "";
 	this.passWd = "";
 	this.isCredsInvalid = false;
+	this.myHttp = $http;
 	console.log("End of ctrl1");
 }
 
-function login(mySALoginForm) {
-	console.log("Start of login >"+this.uName+"<");
+function login(mySALoginForm, myHttpObj) {
+	console.log("Start of login ");
 	this.isCredsInvalid = false;
 	var isUnameEmpty = checkIfEmtpy(mySALoginForm.uname.$viewValue);
 	if (isUnameEmpty) {
@@ -56,6 +57,10 @@ function login(mySALoginForm) {
 		}
 	}
 	
+	var respPromise = myHttpObj.get('http://127.0.0.1:8887/SA_S2.html'); // Need to host the html files using chrome plugin HTML 200 OK
+	respPromise.success(processAfterFormSubmissionSuccessfully);
+	respPromise.error(processAfterFormSubmissionErroneous);
+	
 	console.log("End of login() this.isCredsInvalid => "+this.isCredsInvalid);
 	return this.isCredsInvalid;
 	
@@ -71,6 +76,20 @@ function checkIfEmtpy(myVal) {
 	
 }
 
+/***********************************************************************************************************/
+
+/***********************************************************************************************************/
+/*********************************Javascript Connecting Screen S1 and S2************************************/
+/***********************************************************************************************************/
+function processAfterFormSubmissionSuccessfully(dataFromServer, status, headers, config) {
+	//alert("Submitting form Succeeded!");
+	console.log(dataFromServer);
+	document.getElementById("mainArea").innerHTML = dataFromServer;
+}
+
+function processAfterFormSubmissionErroneous(dataFromServer, status, headers, config) {
+	alert("Submitting form failed!");
+}
 /***********************************************************************************************************/
 
 

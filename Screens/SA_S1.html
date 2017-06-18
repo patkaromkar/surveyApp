@@ -17,7 +17,7 @@ Survey App by Omkar
 				<p class="bannerHeading">MySurvey<span class="bannerTagLine"> ... your personal survey App !!!</span> </p>
 			</div>
 			
-			<div class="subBodyDiv" ng-controller="myCntrl1 as c1">
+			<div class="subBodyDiv" ng-controller="myCntrl1 as c1" id="mainArea">
 
 				<form name="mySALoginForm" novalidate>
 					<table class="loginFormTable" cellpadding="12px">
@@ -44,7 +44,7 @@ Survey App by Omkar
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td><input type="submit" value="Login" ng-click="c1.submitLogin(mySALoginForm)" /></td>
+							<td><input type="button" value="Login" ng-click="c1.submitLogin(mySALoginForm, c1.myHttp)" /></td>
 						</tr>
 						<tr>
 							<td colspan="2">
