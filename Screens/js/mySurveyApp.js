@@ -26,7 +26,9 @@ var listOfSurveysQuestions = [
 				{ansId : 2, ansTitle : "KRK", selected : false}, 
 				{ansId : 3, ansTitle : "Rajesh Khanna", selected : false}, 
 				{ansId : 4, ansTitle : "Mithun C", selected : false}
-			]
+			],
+	nextQId : 2,
+	prevQId : -1
 },
 
 {
@@ -34,11 +36,13 @@ var listOfSurveysQuestions = [
 	question : "Which are your fav actresses in Bollywood ?", 
 	questionType : "MCQ", 
 	answers : [
-				{ansId : 1, ansTitle : "Tabu"}, 
-				{ansId : 2, ansTitle : "Urmila"}, 
-				{ansId : 3, ansTitle : "Madhuri"}, 
-				{ansId : 4, ansTitle : "Karishma"}
-			]
+				{ansId : 1, ansTitle : "Tabu", selected : false}, 
+				{ansId : 2, ansTitle : "Urmila", selected : false}, 
+				{ansId : 3, ansTitle : "Madhuri", selected : false}, 
+				{ansId : 4, ansTitle : "Karishma", selected : false}
+			],
+	nextQId : 3,
+	prevQId : 1
 },
 
 {
@@ -46,11 +50,13 @@ var listOfSurveysQuestions = [
 	question : "Which is your fav movie in Bollywood ?", 
 	questionType : "SCQ", 
 	answers : [
-				{ansId : 1, ansTitle : "Sholay"}, 
-				{ansId : 2, ansTitle : "Ek Haseena thi"}, 
-				{ansId : 3, ansTitle : "Bahubali"}, 
-				{ansId : 4, ansTitle : "Shivaji - The Boss"}
-			]
+				{ansId : 1, ansTitle : "Sholay", selected : false}, 
+				{ansId : 2, ansTitle : "Ek Haseena thi", selected : false}, 
+				{ansId : 3, ansTitle : "Bahubali", selected : false}, 
+				{ansId : 4, ansTitle : "Shivaji - The Boss", selected : false}
+			],
+	nextQId : -1,
+	prevQId : 2
 
 }
 ];
@@ -171,7 +177,23 @@ app.controller("myCntrl3", ctrl3);
 function ctrl3() {
 	
 	this.listOfSurveysQuestions = listOfSurveysQuestions;
+	this.dispQuestions = listOfSurveysQuestions[0];
 	this.answersSelected = [];
+	this.loadQuestion = loadQuestion;
+	
+}
+
+function loadQuestion(quesetionToBeLoadedId) {
+	var currentQId = this.dispQuestions.qId;
+	var questionFound;
+	for(var i = 0; i<this.listOfSurveysQuestions.length; i++) {
+		if (this.listOfSurveysQuestions[i].qId == quesetionToBeLoadedId) {
+			questionFound = this.listOfSurveysQuestions[i];
+			break;
+		}
+	}
+	
+	this.dispQuestions = questionFound;
 	
 }
 

@@ -21,18 +21,30 @@ Survey App by Omkar
 					Survey Questions
 					<div class="questionArea">
 						<div class= "question" >
-						Q. {{c3.listOfSurveysQuestions[0].question}}
+						Q. {{c3.dispQuestions.question}}
 						</div>
 						<div class= "answers" >
-							<ol>
-								<li ng-repeat="answer in c3.listOfSurveysQuestions[0].answers">
-									<input type="checkbox" ng-model="answer.selected" ng-value="true"/> &nbsp;&nbsp; {{answer.ansTitle}}<br><br>
-								</li>
-							</ol>
+						Ans.<br>
+							<div ng-if="c3.dispQuestions.questionType === 'MCQ'">
+								<ol>
+									<li ng-repeat="answer in c3.dispQuestions.answers">
+										<input type="checkbox" ng-model="answer.selected" ng-value="true"/> &nbsp;&nbsp; {{answer.ansTitle}}<br><br>										
+									</li>
+								</ol>
+							</div>
+							<div ng-if="c3.dispQuestions.questionType === 'SCQ'">
+								<select ng-model="selectedAnswer" ng-options="answer.ansTitle for answer in c3.dispQuestions.answers" ></select>
+							</div>
 						</div>
 						<div class= "questionNavigation" >
-							{{c3.answersSelected}} <br>
-							{{c3.listOfSurveysQuestions[0].answers}}
+							<span class="prevQuestionNav">
+								<input type="button" value = "Previous" ng-disabled="c3.dispQuestions.prevQId < 0" ng-click="c3.loadQuestion(c3.dispQuestions.prevQId)"/>
+							</span>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span class="nextQuestionNav">
+								<input type="button" value = "Next" ng-disabled="c3.dispQuestions.nextQId < 0" ng-click="c3.loadQuestion(c3.dispQuestions.nextQId)"/>
+							</span>
+							
 						</div>
 					</div>
 			</div>

@@ -106,4 +106,14 @@ div.answers {
 div.questionNavigation {
 	padding : 10px 10px 10px 10px;
 }
+
+span.prevQuestionNav {
+	text-align : left;
+	width : 50%;
+}
+
+span.nextQuestionNav {
+	text-align : right;
+	width : 50%;
+}
 /*****************************************CSS for login screen S3 ***************************************/
