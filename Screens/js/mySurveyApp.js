@@ -14,6 +14,52 @@ var listOfSurveys = [
 
 
 /***********************************************************************************************************/
+/************************************Test Data for Screen S3************************************************/
+/***********************************************************************************************************/
+var listOfSurveysQuestions = [
+{
+	qId : 1, 
+	question : "Which are your fav heros in Bollywood ?", 
+	questionType : "MCQ", 
+	answers : [
+				{ansId : 1, ansTitle : "SRK", selected : false}, 
+				{ansId : 2, ansTitle : "KRK", selected : false}, 
+				{ansId : 3, ansTitle : "Rajesh Khanna", selected : false}, 
+				{ansId : 4, ansTitle : "Mithun C", selected : false}
+			]
+},
+
+{
+	qId : 2, 
+	question : "Which are your fav actresses in Bollywood ?", 
+	questionType : "MCQ", 
+	answers : [
+				{ansId : 1, ansTitle : "Tabu"}, 
+				{ansId : 2, ansTitle : "Urmila"}, 
+				{ansId : 3, ansTitle : "Madhuri"}, 
+				{ansId : 4, ansTitle : "Karishma"}
+			]
+},
+
+{
+	qId : 3, 
+	question : "Which is your fav movie in Bollywood ?", 
+	questionType : "SCQ", 
+	answers : [
+				{ansId : 1, ansTitle : "Sholay"}, 
+				{ansId : 2, ansTitle : "Ek Haseena thi"}, 
+				{ansId : 3, ansTitle : "Bahubali"}, 
+				{ansId : 4, ansTitle : "Shivaji - The Boss"}
+			]
+
+}
+];
+/***********************************************************************************************************/
+
+
+
+
+/***********************************************************************************************************/
 /************************************Java script for Login Screen S1****************************************/
 /***********************************************************************************************************/
 var app = angular.module("myApp",[]);
@@ -113,4 +159,21 @@ function isSurveyParticipitable(survey) {
 		return false;
 	}
 }
+/***********************************************************************************************************/
+
+
+/***********************************************************************************************************/
+/************************************Javascript for Screen S3***********************************************/
+/***********************************************************************************************************/
+app.controller("myCntrl3", ctrl3);
+
+
+function ctrl3() {
+	
+	this.listOfSurveysQuestions = listOfSurveysQuestions;
+	this.answersSelected = [];
+	
+}
+
+
 /***********************************************************************************************************/

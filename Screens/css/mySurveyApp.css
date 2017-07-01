@@ -20,7 +20,7 @@ div.subBodyDiv{
 	padding : 3px;
 	//border : 1px dotted black;
 	width : 620px;
-	height : 199px;
+	height : 399px;
 }
 
 p.bannerHeading {
@@ -77,3 +77,33 @@ div.pageTopic {
 	padding : 15px;
 }
 /*****************************************CSS for login screen S2 ***************************************/
+
+/*****************************************CSS for login screen S3 ***************************************/
+div.questionArea {
+	width : 620px;
+	border : 2px dotted orange;
+	border-radius: 12px
+	//height : 299px;
+}
+
+div.question {
+	border-bottom-color : red;
+	border-bottom-style : solid;
+	border-bottom-width : 2px;
+	text-align : left;
+	padding : 10px 10px 10px 15px;
+	//padding-left : 10px;
+}
+
+div.answers {
+	border-bottom-color : red;
+	border-bottom-style : solid;
+	border-bottom-width : 2px;
+	text-align : left;
+	padding : 10px 10px 10px 39px;
+}
+
+div.questionNavigation {
+	padding : 10px 10px 10px 10px;
+}
+/*****************************************CSS for login screen S3 ***************************************/

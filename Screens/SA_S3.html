@@ -1,0 +1,50 @@
+<html>
+
+
+<head>
+<title>
+Survey App by Omkar
+</title>
+<script src="../../../../1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="css/mySurveyApp.css">
+</head>
+
+<body ng-app="myApp">
+
+	<center>
+		<div class="mainBodyDiv">
+			<div class="headerDiv">
+				<p class="bannerHeading">MySurvey<span class="bannerTagLine"> ... your personal survey App !!!</span> </p>
+			</div>
+			
+			<div class="subBodyDiv" ng-controller="myCntrl3 as c3">
+					Survey Questions
+					<div class="questionArea">
+						<div class= "question" >
+						Q. {{c3.listOfSurveysQuestions[0].question}}
+						</div>
+						<div class= "answers" >
+							<ol>
+								<li ng-repeat="answer in c3.listOfSurveysQuestions[0].answers">
+									<input type="checkbox" ng-model="answer.selected" ng-value="true"/> &nbsp;&nbsp; {{answer.ansTitle}}<br><br>
+								</li>
+							</ol>
+						</div>
+						<div class= "questionNavigation" >
+							{{c3.answersSelected}} <br>
+							{{c3.listOfSurveysQuestions[0].answers}}
+						</div>
+					</div>
+			</div>
+		</div>
+	<center>
+	
+	<br>
+	<br>
+	
+</body>
+
+<script src="js/mySurveyApp.js">	
+</script>
+
+</html>
