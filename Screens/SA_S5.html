@@ -26,7 +26,7 @@ Survey App by Omkar
 						<table class="createSurveyTable">
 							<tr class="createSurveyTableHeader">
 								<th colspan="2">
-									Fill in your survey details here
+									Fill in your survey details here<br>
 								</th>
 							</tr>
 							<tr>
@@ -66,36 +66,58 @@ Survey App by Omkar
 				<br>	
 				<br>
 				<br>
-				
-				<div class="surveyCreateQArea" ng-show="c5.survey.surveyStatus==='Open'">
-					<table>
-						<tr>
-							<td>
-								Question Title
-							</td>
-							<td>
-								<input type="text"/>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Question Type
-							</td>
-							<td>
-								<select ng-model="c5.selectedQType" ng-options="questionType.qTypeDesc for questionType in c5.qTypes" ></select>
-								<br>
-							</td>
-						</tr>
-						<tr>	
-							<td>
-								Answer
-							</td>
-							<td>
-								<input type="text"/>
-							</td>
-						</tr>
-					</table>
-				<div>
+				<form name="surveyDet">
+					<div class="surveyCreateQArea" ng-show="c5.survey.surveyStatus === 'Open'">
+						<table>
+							<tr>
+								<td>
+									Question Title
+								</td>
+								<td>
+									<span>
+										<input type="text" ng-model="c5.blankQuestion.question"/>&nbsp;
+										<!--{{surveyDet.qType.$viewValue}} -->
+										<input type="button" value=" + " ng-click="c5.addMoreQ()"/>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Question Type
+								</td>
+								<td>
+									<select ng-model="c5.selectedQType" ng-options="questionType.qTypeDesc for questionType in c5.qTypes"></select>
+									<br>
+								</td>
+							</tr>
+							<tr>	
+								<td>
+									Answer
+								</td>
+								<td>
+									<span ng-if="c5.listOfAs.length > 0">
+										<table>
+											<tr ng-repeat="answer in c5.listOfAs">
+												<td>
+													{{answer.ansTitle}}
+												</td>
+												<td>
+													<input type="button" value=" - " ng-click="c5.remA($index)" />
+												</td>
+											</tr>
+										</table>							
+									</span>
+									<br>
+									<span>
+										<input type="text" ng-model="c5.blankAnswer.ansTitle"/>&nbsp;
+										<input type="button" value=" + " ng-click="c5.addMoreA()"/>
+									</span>								
+								</td>
+							</tr>
+						</table>
+					<div>
+					
+				</form>
 				
 				<br>
 				<br>

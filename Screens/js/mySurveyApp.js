@@ -55,10 +55,22 @@ var listOfSurveysQuestions = [
 				{ansId : 3, ansTitle : "Bahubali", selected : false}, 
 				{ansId : 4, ansTitle : "Shivaji - The Boss", selected : false}
 			],
-	nextQId : -1,
+	nextQId : 4,
 	prevQId : 2
 
-}
+},
+
+{
+	qId : 4,
+	question : "kjbdjkdsgk",
+	questionType : "MCQ",
+	answers : [
+				{ansId : 1, ansTitle : "kdskgk saasgla aklsga", selected:false},
+				{ansId : 2, ansTitle : "mash", selected:false},
+				{ansId : 3, ansTitle : "dskdshg s", selected:false}
+			],
+	nextQId:-1,
+	prevQId:3}
 ];
 /***********************************************************************************************************/
 
@@ -236,25 +248,30 @@ function deleteSurvey(surveyId){
 app.controller("myCntrl5", ctr5);
 
 var QUESTION_TYPES = [
-	{qType :"MCQ", qTypeDesc : "Multiple Choice Question"}, 
-	{qType :"SCQ", qTypeDesc : "Single Choice Question"}
+	{queType :"MCQ", qTypeDesc : "Multiple Choice Question"}, 
+	{queType :"SCQ", qTypeDesc : "Single Choice Question"}
 	];
 	
 var blankNewSurvey = {surveyId : -2, surveyTitle : "", surveyStatus : "Not Created", surveyDesc : ""};
-var blankQuestion = {
+var listOfQs = [];
+var listOfAs = [];
+
+var blankAns = {
+	ansId : -99, ansTitle : "", selected : false
+};
+
+
+var blankQue = {
 	qId : -99, 
 	question : "", 
 	questionType : "", 
 	answers : [
-				blankAnswer
+				blankAns
 			],
 	nextQId : -99,
 	prevQId : -99
 };
 
-var blankAnswer = {
-	ansId : -99, ansTitle : "", selected : false
-};
 function ctr5() {
 	this.listOfSurveys = listOfSurveys;
 	this.survey = blankNewSurvey;
@@ -262,6 +279,17 @@ function ctr5() {
 	this.isSurveyCreated = false;
 	this.createBtnName = "Create";
 	this.qTypes = QUESTION_TYPES;
+	this.addMoreA = addMoreA;
+	this.listOfQs = listOfQs;
+	this.listOfAs = listOfAs;
+	this.addMoreQ = addMoreQ;
+	this.blankAnswer = blankAns;
+	this.blankQuestion = blankQue;
+	this.selectedQType = this.qTypes[0];
+	this.checkIfEmptyQ = checkIfEmptyQ;
+	this.createBlankA = createBlankA;
+	this.createBlankQ = createBlankQ;
+	this.remA = remA;
 }
 
 function createSurvey() {
@@ -270,32 +298,92 @@ function createSurvey() {
 	this.listOfSurveys.push(this.survey);
 	this.isSurveyCreated = true;
 	this.createBtnName = "Created !!!"
-	this.selectedQType = "Omkar";
+	this.selectedQType = this.qTypes[0];
+	this.blankAnswer = blankAns;
+	this.blankQuestion = blankQue;
 }
 
 function createBlankQnA() {
-	createBlankQ();
 	createBlankA();
+	createBlankQ();
+	
 }
 
 function createBlankQ() {
-	blankQuestion = {
+	blankQue = {
 		qId : -99, 
 		question : "", 
 		questionType : "", 
 		answers : [
-					blankAnswer
+					blankAns
 				],
 		nextQId : -99,
 		prevQId : -99
 	};
-
+	this.blankQuestion = blankQue;
 }
 
 function createBlankA() {
 
-	blankAnswer = {
+	blankAns = {
 		ansId : -99, ansTitle : "", selected : false
 	};
+	this.blankAnswer = blankAns;
+}
+
+function addMoreA() {
+	if (this.blankAnswer.ansTitle === "") {
+		alert("Answer cannot be blank. Please fill in an answer for the question.");
+		return;
+	}
+	this.blankAnswer.ansId = this.listOfAs.length+1;
+	this.listOfAs.push(this.blankAnswer);
+	this.blankQuestion.answers = this.listOfAs;
+	this.createBlankA();
+}
+
+function addMoreQ() {
+	var allOk = this.checkIfEmptyQ();
+	if (!allOk) {
+		return false;
+	} else {
+		this.blankQuestion.questionType = this.selectedQType.queType;
+		this.listOfQs.push(this.blankQuestion);
+		this.createBlankQnA();
+	}
+}
+
+function checkIfEmptyQ() {
+	if (this.blankQuestion.question === "") {
+		alert("Question cannot be empty. Please fill in a question for your survey.");
+		return false;
+	}
+	//this.blankQuestion.answers[0].ansId
+	var ansIsEmpty = false;
+	if (this.blankQuestion.answers.length == 1) {
+		if (this.blankQuestion.answers[0].ansId == -99) {
+			ansIsEmpty = true;
+		}
+	} else if (this.blankQuestion.answers.length == 0) {
+		ansIsEmpty = true;
+	} else {
+		ansIsEmpty = false;
+	}
+	
+	if (ansIsEmpty) {
+		alert("Question must have atleast one answer. Please fill in an answer for the question.");
+		return false;
+	}
+	/*if (this.blankAnswer.ansTitle === "") {
+		alert("Question must have atleast one answer. Please fill in an answer for the question.");
+		return;
+	}*/
+	
+	return true;
+}
+
+function remA(ansIndex) {
+	this.listOfAs.splice(ansIndex, 1);
+	this.blankQuestion.answers = this.listOfAs;
 }
 /***********************************************************************************************************/
