@@ -1,0 +1,95 @@
+<html>
+
+
+<head>
+<title>
+Survey App by Omkar
+</title>
+<script src="../../../../1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="css/mySurveyApp.css">
+</head>
+
+<body ng-app="myApp">
+
+	<center>
+		<div class="mainBodyDiv">
+			<div class="headerDiv">
+				<p class="bannerHeading">MySurvey<span class="bannerTagLine"> ... your personal survey App !!!</span> </p>
+			</div>
+			
+			<div class="subBodyDiv" ng-controller="myCntrl4 as c4">
+
+					<div class="pageTopic">
+						List of Surveys to Manage
+					</div>
+					<table class="surveyListTable">
+						<tr class="surveyListTableHeader">
+							<th class="surveyListTableHeaderCell">
+								Select
+							</th>
+							<th class="surveyListTableHeaderCell">
+								Survey #
+							</th>
+							<th class="surveyListTableHeaderCell">
+								Survey Title
+							</th>
+							<th  class="surveyListTableHeaderCell">
+								Survey Status
+							</th>
+						</tr>
+						
+						
+						<tr ng-repeat="survey in c4.listOfSurveys">
+							<td ng-if="$even">
+								<input type="radio" name="survey" ng-value="survey.surveyId" ng-click="c4.selectSurvey4Manag(survey.surveyId)"/>
+							</td>
+							<td ng-if="$odd" class="oddRecord">
+								<input type="radio" name="survey" ng-value="survey.surveyId" ng-click="c4.selectSurvey4Manag(survey.surveyId)"/>
+							</td>
+							
+							<td ng-if="$even">{{$index + 1}}</td>
+							<td ng-if="$odd" class="oddRecord">{{$index + 1}}</td>
+							
+							<td ng-if="$even" style="text-align : left">
+								{{survey.surveyTitle}}
+							</td>
+							<td ng-if="$odd" class="oddRecord" style="text-align : left">
+								{{survey.surveyTitle}}
+							</td>
+							
+							<td ng-if="$even">
+								{{survey.surveyStatus}}
+							</td>
+							<td ng-if="$odd" class="oddRecord">
+								{{survey.surveyStatus}}
+							</td>
+							
+							
+						</tr>
+						
+					</table>
+				<br>
+				<input type="hidden" ng-model="c4.surveyToBeManaged" ng-init="c4.surveyToBeManaged=-1"/>
+				
+				<div>
+					<span><input type="button" value="Create" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span><input type="button" value="Edit" ng-disabled="c4.surveyToBeManaged === -1"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span><input type="button" value="Delete" ng-disabled="c4.surveyToBeManaged === -1" ng-click="c4.deleteSurvey(c4.surveyToBeManaged)"/></span>
+					<br>
+					<br>
+					
+				</div>
+				
+			</div>
+		</div>
+	<center>
+	
+	<br>
+	<br>
+	
+</body>
+
+<script src="js/mySurveyApp.js">	
+</script>
+
+</html>

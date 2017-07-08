@@ -2,13 +2,13 @@
 /************************************Test Data for Screen S2************************************************/
 /***********************************************************************************************************/
 var listOfSurveys = [
-{surveyId : 1, surveyTitle : "Bollywood Preferences", surveyStatus : "Open"},
-{surveyId : 2, surveyTitle : "Survey of Countries for living", surveyStatus : "Open"},
-{surveyId : 3, surveyTitle : "Food Survey", surveyStatus : "Closed"},
-{surveyId : 4, surveyTitle : "Population Survey", surveyStatus : "Closed"},
-{surveyId : 5, surveyTitle : "Survey of Elecronics", surveyStatus : "Open"},
-{surveyId : 6, surveyTitle : "Music Survey", surveyStatus : "Open"},
-{surveyId : 7, surveyTitle : "India's Political Survey", surveyStatus : "Closed"}
+{surveyId : 1, surveyTitle : "Bollywood Preferences", surveyStatus : "Open", surveyDesc : "Your Bollywood preferences"},
+{surveyId : 2, surveyTitle : "Survey of Countries for living", surveyStatus : "Open", surveyDesc : "This is survey to know which is the best country to live in"},
+{surveyId : 3, surveyTitle : "Food Survey", surveyStatus : "Closed", surveyDesc : "This survey is to know your food preference"},
+{surveyId : 4, surveyTitle : "Population Survey", surveyStatus : "Closed", surveyDesc : "Survey to know more information about the population"},
+{surveyId : 5, surveyTitle : "Survey of Elecronics", surveyStatus : "Open", surveyDesc : "Your Electronic preferences"},
+{surveyId : 6, surveyTitle : "Music Survey", surveyStatus : "Open", surveyDesc : "Your music preferences"},
+{surveyId : 7, surveyTitle : "India's Political Survey", surveyStatus : "Closed", surveyDesc : "Survey to know about political likes and dislikes"}
 ];
 /***********************************************************************************************************/
 
@@ -198,4 +198,104 @@ function loadQuestion(quesetionToBeLoadedId) {
 }
 
 
+/***********************************************************************************************************/
+
+
+/***********************************************************************************************************/
+/************************************Java script for Login Screen S4****************************************/
+/***********************************************************************************************************/
+app.controller("myCntrl4", ctr4);
+function ctr4() {
+	
+	this.listOfSurveys = listOfSurveys;
+	this.selectSurvey4Manag = selectSurvey4Manag;
+	this.deleteSurvey = deleteSurvey;
+	
+}
+
+function selectSurvey4Manag(surveyId) {
+	//alert(surveyId);
+	this.surveyToBeManaged = surveyId;
+}
+
+function deleteSurvey(surveyId){
+	for (var i=0; i<this.listOfSurveys.length; i++) {
+		if(this.listOfSurveys[i].surveyId === surveyId) {
+			//delete this.listOfSurveys[i];
+			this.listOfSurveys.splice(i,1);
+			break;
+		}
+	}
+		
+}
+/***********************************************************************************************************/
+
+/***********************************************************************************************************/
+/************************************Java script for Login Screen S5****************************************/
+/***********************************************************************************************************/
+app.controller("myCntrl5", ctr5);
+
+var QUESTION_TYPES = [
+	{qType :"MCQ", qTypeDesc : "Multiple Choice Question"}, 
+	{qType :"SCQ", qTypeDesc : "Single Choice Question"}
+	];
+	
+var blankNewSurvey = {surveyId : -2, surveyTitle : "", surveyStatus : "Not Created", surveyDesc : ""};
+var blankQuestion = {
+	qId : -99, 
+	question : "", 
+	questionType : "", 
+	answers : [
+				blankAnswer
+			],
+	nextQId : -99,
+	prevQId : -99
+};
+
+var blankAnswer = {
+	ansId : -99, ansTitle : "", selected : false
+};
+function ctr5() {
+	this.listOfSurveys = listOfSurveys;
+	this.survey = blankNewSurvey;
+	this.createSurvey = createSurvey;
+	this.isSurveyCreated = false;
+	this.createBtnName = "Create";
+	this.qTypes = QUESTION_TYPES;
+}
+
+function createSurvey() {
+	this.survey.surveyId = this.listOfSurveys.length+1;
+	this.survey.surveyStatus = "Open";
+	this.listOfSurveys.push(this.survey);
+	this.isSurveyCreated = true;
+	this.createBtnName = "Created !!!"
+	this.selectedQType = "Omkar";
+}
+
+function createBlankQnA() {
+	createBlankQ();
+	createBlankA();
+}
+
+function createBlankQ() {
+	blankQuestion = {
+		qId : -99, 
+		question : "", 
+		questionType : "", 
+		answers : [
+					blankAnswer
+				],
+		nextQId : -99,
+		prevQId : -99
+	};
+
+}
+
+function createBlankA() {
+
+	blankAnswer = {
+		ansId : -99, ansTitle : "", selected : false
+	};
+}
 /***********************************************************************************************************/

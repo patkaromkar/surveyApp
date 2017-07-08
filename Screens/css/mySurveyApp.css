@@ -117,3 +117,35 @@ span.nextQuestionNav {
 	width : 50%;
 }
 /*****************************************CSS for login screen S3 ***************************************/
+
+
+
+/*****************************************CSS for login screen S4 ***************************************/
+/*******************NOTHING HERE SO FAR******************/
+/*****************************************CSS for login screen S4 ***************************************/
+
+
+
+/*****************************************CSS for login screen S5 ***************************************/
+table.createSurveyTable {
+	background-color : #f8ff6c;
+	border-collapse : collapsed;
+	border : 2px dotted red;
+	border-radius: 12px;
+}
+
+table tr.createSurveyTableHeader {
+	background-color : orange;
+	
+}
+table tr td {
+	text-align : left;
+	
+}
+
+div.surveyCreateQArea{
+	border : 2px dotted orange;
+	border-radius: 12px;
+	text-align : left;
+}
+/*****************************************CSS for login screen S5 ***************************************/

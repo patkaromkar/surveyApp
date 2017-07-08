@@ -1,0 +1,121 @@
+<html>
+
+
+<head>
+<title>
+Survey App by Omkar
+</title>
+<script src="../../../../1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="css/mySurveyApp.css">
+</head>
+
+<body ng-app="myApp">
+
+	<center>
+		<div class="mainBodyDiv">
+			<div class="headerDiv">
+				<p class="bannerHeading">MySurvey<span class="bannerTagLine"> ... your personal survey App !!!</span> </p>
+			</div>
+			
+			<div class="subBodyDiv" ng-controller="myCntrl5 as c5">
+
+					<div class="pageTopic">
+						Create your Survey
+					</div>
+					<form name="createSurveyForm">
+						<table class="createSurveyTable">
+							<tr class="createSurveyTableHeader">
+								<th colspan="2">
+									Fill in your survey details here
+								</th>
+							</tr>
+							<tr>
+								<td>
+									Survey Title : 
+								</td>
+								<td>
+									<input type="text" ng-model="c5.survey.surveyTitle"  ng-if="!c5.isSurveyCreated"/>
+									<span ng-if="c5.isSurveyCreated">
+										{{c5.survey.surveyTitle}}
+									</span>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Survey Description : 
+								</td>
+								<td>
+									<input type="text" ng-model="c5.survey.surveyDesc" ng-if="!c5.isSurveyCreated"/>
+									<span ng-if="c5.isSurveyCreated">
+										{{c5.survey.surveyDesc}}
+									</span>
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan="2">
+									<center>
+										<input type="button" name="surveyCreateBtn" value="{{c5.createBtnName}}" 
+											ng-click="c5.createSurvey()" ng-disabled="c5.isSurveyCreated"/>
+									</center>
+								</td>
+							</tr>
+						</table>
+					</form>
+				<br>	
+				<br>
+				<br>
+				
+				<div class="surveyCreateQArea" ng-show="c5.survey.surveyStatus==='Open'">
+					<table>
+						<tr>
+							<td>
+								Question Title
+							</td>
+							<td>
+								<input type="text"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Question Type
+							</td>
+							<td>
+								<select ng-model="c5.selectedQType" ng-options="questionType.qTypeDesc for questionType in c5.qTypes" ></select>
+								<br>
+							</td>
+						</tr>
+						<tr>	
+							<td>
+								Answer
+							</td>
+							<td>
+								<input type="text"/>
+							</td>
+						</tr>
+					</table>
+				<div>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				
+				
+			</div>
+		</div>
+	<center>
+	
+	<br>
+	<br>
+	
+</body>
+
+<script src="js/mySurveyApp.js">	
+</script>
+
+</html>
