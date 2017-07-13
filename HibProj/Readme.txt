@@ -1,0 +1,1 @@
+This folder is created to house project for hibernate part of the survey app
