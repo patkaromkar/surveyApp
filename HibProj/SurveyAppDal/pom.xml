@@ -29,7 +29,28 @@
 	    <version>4.3.1.Final</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.17</version>
+	</dependency>
+		
 
+	<!-- https://mvnrepository.com/artifact/oracle/ojdbc14 -->
+	<!-- Jar file is not available in the above repository due to may be license issues.
+	Therefore the file was manually downloaded and it was installed in the local repository using the command line = 
+	mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.1.0 -Dpackaging=jar -Dfile=G:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib\ojdbc14.jar -DgeneratePom=true
+	After this the settings.xml was also properly used from the eclipse plugin configuration for maven. 
+	Then the project was right clicked and 'Update Maven project' was done
+	 -->
+	<dependency>
+	    <groupId>com.oracle</groupId>
+	    <artifactId>ojdbc14</artifactId>
+	    <version>10.2.0.1.0</version>
+	</dependency>
+
+	
   </dependencies>
   
   
