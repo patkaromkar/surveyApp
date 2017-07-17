@@ -51,11 +51,9 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">create</property>
 
-        <!-- Names the annotated entity class 
-        <mapping class="org.oap.learn.hib4.dto.UserDetails"/>
-        <mapping class="org.oap.learn.hib4.dto.Vehicle"/>
-        <mapping class="org.oap.learn.hib4.dto.Gadget"/>
-        <mapping class="org.oap.learn.hib4.dto.Furniture"/>-->
+        <!-- Names the annotated entity class --> 
+        <mapping class="com.regulus.app.survey.entities.SurveyStatus"/>
+        <mapping class="com.regulus.app.survey.entities.User"/>
 
     </session-factory>
 
