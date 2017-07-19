@@ -37,7 +37,9 @@ import com.regulus.app.survey.util.SAConstants;
 		@NamedQuery(name=SAConstants.NQUERY_USER_GETUSER_BY_EMAIL_KEY, 
 				query=SAConstants.NQUERY_USER_GETUSER_BY_EMAIL),
 		@NamedQuery(name=SAConstants.NQUERY_USER_GETUSER_BY_ADMIN_KEY, 
-				query=SAConstants.NQUERY_USER_GETUSER_BY_ADMIN)
+				query=SAConstants.NQUERY_USER_GETUSER_BY_ADMIN),
+		@NamedQuery(name=SAConstants.NQUERY_USER_DELETEUSER_BY_ID_KEY, 
+			query=SAConstants.NQUERY_USER_DELETEUSER_BY_ID)
 
 
 })

@@ -50,7 +50,9 @@ public abstract class AbstractSurveyAppDAO {
 			
 			this.sessionFactory = cfg.buildSessionFactory(serviceRegistry);
 			this.session = sessionFactory.openSession();
-		}
+		} /*else if (!this.session.isOpen()) {
+			this.session = sessionFactory.openSession();
+		}*/
 		
 		logger.debug("End of init()");
 

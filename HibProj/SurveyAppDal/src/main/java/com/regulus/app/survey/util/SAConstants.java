@@ -9,6 +9,8 @@ public interface SAConstants {
 			+ "Please create session first and then try to close it. Cannot close a null session.";
 	String DAL_EX_UNSUPPORTED_QUERYPARAM = "The data type of the query parameter = \"{0}\" is \"{1}\" which is not supported "
 			+ "by the DAL of Survey App. The supported types are int, short, float, double, long, boolean and String.";
+	String DAL_EX_UNSUPPORTED_QUERYPARAM_GETUSER = "The data type of the query parameter = \"{0}\" is \"{1}\" which is not supported "
+			+ "by the DAL of Survey App. The supported types for getting user by Username and Password is String.";
 	/*************************************************************************************************************************/
 	
 	
@@ -21,6 +23,7 @@ public interface SAConstants {
 	String NQ_CONST_PARAM_LNAME_WILDCARD		= "paramLnameWC";
 	String NQ_CONST_PARAM_EMAIL					= "paramEmail";
 	String NQ_CONST_PARAM_ISADMIN				= "paramIsAdmin";
+	String NQ_CONST_PARAM_UID					= "paramUid";
 	
 	String NQUERY_USER_GETALLUSERS_KEY 			= "User.getAllUsers";
 	String NQUERY_USER_GETALLUSERS 				= "from User";
@@ -36,6 +39,8 @@ public interface SAConstants {
 	String NQUERY_USER_GETUSER_BY_EMAIL			= "from User u where u.email = :"+NQ_CONST_PARAM_EMAIL;
 	String NQUERY_USER_GETUSER_BY_ADMIN_KEY		= "User.getUserByIsAdmin";
 	String NQUERY_USER_GETUSER_BY_ADMIN			= "from User u where u.saIsAdmin = :"+NQ_CONST_PARAM_ISADMIN;
+	String NQUERY_USER_DELETEUSER_BY_ID_KEY		= "User.deleteByUId";
+	String NQUERY_USER_DELETEUSER_BY_ID			= "delete from User where saUid = :"+NQ_CONST_PARAM_UID;
 	/*************************************************************************************************************************/
 	
 	

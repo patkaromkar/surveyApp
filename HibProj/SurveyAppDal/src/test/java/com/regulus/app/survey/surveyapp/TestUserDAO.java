@@ -23,13 +23,37 @@ public class TestUserDAO extends TestCase {
 
 	Logger logger = Logger.getLogger(TestUserDAO.class);
 	private UserDAO userDAO = null;
-	
+	private int i = 0;
 	@Override
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		logger.debug("Start of setUp()");
 		super.setUp();
 		this.userDAO = new UserDAO();
+		User u = null;
+		i = 0;
+		for(; i<10; i++) {
+			u = new User();
+			u.setSaUfirstName(SADALUtil.getRandomWord(9));
+			u.setSaULastName(SADALUtil.getRandomWord(9));
+			u.setSaUsername("asd"+i);
+			u.setSaPassword("asd"+(i*2));
+			u.setEmail(SADALUtil.getRandomWord(9));
+			
+			if (i == 2) {
+				u.setSaUfirstName("Zeaasd1");
+				u.setEmail("zeus@a.me");
+			} else if (i == 3) {
+				u.setSaUfirstName("aRasd1Mic");
+			} else if (i == 4) {
+				u.setSaUfirstName("asd1Dond");
+				u.setSaULastName("Dondasd1");
+			} 
+			
+			u.setSaIsAdmin((i%2==0?true:false));
+			
+			this.userDAO.createUser(u);
+		}
 		logger.debug("End of setUp()");
 	}
 	
@@ -39,18 +63,15 @@ public class TestUserDAO extends TestCase {
 	 */
 	public void testCreateUser() {
 		logger.debug("Start of testCreateUser()");
-		User u = null;
-		for(int i = 0; i<10; i++) {
-			u = new User();
-			u.setSaUfirstName(SADALUtil.getRandomWord(9));
-			u.setSaULastName(SADALUtil.getRandomWord(9));
-			u.setSaUsername("asd"+i);
-			u.setSaPassword("asd"+(i*2));
-			u.setEmail(SADALUtil.getRandomWord(9));
-			u.setSaIsAdmin((i%2==0?true:false));
-			
-			this.userDAO.createUser(u);
-		}
+		User u = new User();
+		u.setSaUfirstName(SADALUtil.getRandomWord(9));
+		u.setSaULastName(SADALUtil.getRandomWord(9));
+		u.setSaUsername("asd11");
+		u.setSaPassword("asd22");
+		u.setEmail(SADALUtil.getRandomWord(9));
+		u.setSaIsAdmin(true);
+		
+		this.userDAO.createUser(u);
 		
 		logger.debug("End of testCreateUser()");		
 	}
@@ -61,20 +82,6 @@ public class TestUserDAO extends TestCase {
 	 */
 	public void testGetAllUsers() {
 		logger.debug("Start of testGetAllUsers()");
-		
-		User u = null;
-		int i = 0;
-		for(; i<10; i++) {
-			u = new User();
-			u.setSaUfirstName(SADALUtil.getRandomWord(9));
-			u.setSaULastName(SADALUtil.getRandomWord(9));
-			u.setSaUsername("asd"+i);
-			u.setSaPassword("asd"+(i*2));
-			u.setEmail(SADALUtil.getRandomWord(9));
-			u.setSaIsAdmin((i%2==0?true:false));
-			
-			this.userDAO.createUser(u);
-		}
 		
 		final List<User> users = this.userDAO.getAllUsers();
 		assertEquals("As per expectation expected no of users were not retrieved", i, users.size());
@@ -91,19 +98,6 @@ public class TestUserDAO extends TestCase {
 	 */
 	public void testGetUserByUnameNPwd() {
 		logger.debug("Start of testGetUser()");
-		
-		User u = null;
-		for(int i = 0; i<10; i++) {
-			u = new User();
-			u.setSaUfirstName(SADALUtil.getRandomWord(9));
-			u.setSaULastName(SADALUtil.getRandomWord(9));
-			u.setSaUsername("asd"+i);
-			u.setSaPassword("asd"+(i*2));
-			u.setEmail(SADALUtil.getRandomWord(9));
-			u.setSaIsAdmin((i%2==0?true:false));
-			
-			this.userDAO.createUser(u);
-		}
 				
 		final Map<String, Object> queryParams = new HashMap<String, Object>();
 		queryParams.put(SAConstants.NQ_CONST_PARAM_USERNAME, "asd1");
@@ -126,26 +120,6 @@ public class TestUserDAO extends TestCase {
 	 */
 	public void testGetUserByFnameLike() {
 		logger.debug("Start of testGetUserByFnameLike()");
-		
-		User u = null;
-		for(int i = 0; i<10; i++) {
-			u = new User();
-			u.setSaUfirstName(SADALUtil.getRandomWord(9));
-			if (i == 2) {
-				u.setSaUfirstName("Zeaasd1");
-			} else if (i == 3) {
-				u.setSaUfirstName("aRasd1Mic");
-			} else if (i == 4) {
-				u.setSaUfirstName("asd1Dond");
-			}
-			u.setSaULastName(SADALUtil.getRandomWord(9));
-			u.setSaUsername("asd"+i);
-			u.setSaPassword("asd"+(i*2));
-			u.setEmail(SADALUtil.getRandomWord(9));
-			u.setSaIsAdmin((i%2==0?true:false));
-			
-			this.userDAO.createUser(u);
-		}
 				
 		final Map<String, Object> queryParams = new HashMap<String, Object>();
 		queryParams.put(SAConstants.NQ_CONST_PARAM_FNAME_WILDCARD, "%asd1%");
@@ -168,26 +142,6 @@ public class TestUserDAO extends TestCase {
 	 */
 	public void testGetUserByLnameLike() {
 		logger.debug("Start of testGetUserByLnameLike()");
-		
-		User u = null;
-		for(int i = 0; i<10; i++) {
-			u = new User();
-			u.setSaUfirstName(SADALUtil.getRandomWord(9));
-			u.setSaULastName(SADALUtil.getRandomWord(9));
-			if (i == 2) {
-				u.setSaULastName("Zeaasd1");
-			} else if (i == 3) {
-				u.setSaULastName("aRasd1Mic");
-			} else if (i == 4) {
-				u.setSaULastName("asd1Dond");
-			}
-			u.setSaUsername("asd"+i);
-			u.setSaPassword("asd"+(i*2));
-			u.setEmail(SADALUtil.getRandomWord(9));
-			u.setSaIsAdmin((i%2==0?true:false));
-			
-			this.userDAO.createUser(u);
-		}
 				
 		final Map<String, Object> queryParams = new HashMap<String, Object>();
 		queryParams.put(SAConstants.NQ_CONST_PARAM_LNAME_WILDCARD, "%asd1");
@@ -210,22 +164,6 @@ public class TestUserDAO extends TestCase {
 	 */
 	public void testGetUserByEmail() {
 		logger.debug("Start of testGetUserByEmail()");
-		
-		User u = null;
-		for(int i = 0; i<10; i++) {
-			u = new User();
-			u.setSaUfirstName(SADALUtil.getRandomWord(9));
-			u.setSaULastName(SADALUtil.getRandomWord(9));
-			u.setSaUsername("asd"+i);
-			u.setSaPassword("asd"+(i*2));
-			u.setEmail(SADALUtil.getRandomWord(9));
-			if (i == 2) {
-				u.setEmail("zeus@a.me");
-			}
-			u.setSaIsAdmin((i%2==0?true:false));
-			
-			this.userDAO.createUser(u);
-		}
 				
 		final Map<String, Object> queryParams = new HashMap<String, Object>();
 		queryParams.put(SAConstants.NQ_CONST_PARAM_EMAIL, "zeus@a.me");
@@ -249,19 +187,6 @@ public class TestUserDAO extends TestCase {
 	 */
 	public void testGetUserByIsAdmin() {
 		logger.debug("Start of testGetUserByIsAdmin()");
-		
-		User u = null;
-		for(int i = 0; i<10; i++) {
-			u = new User();
-			u.setSaUfirstName(SADALUtil.getRandomWord(9));
-			u.setSaULastName(SADALUtil.getRandomWord(9));
-			u.setSaUsername("asd"+i);
-			u.setSaPassword("asd"+(i*2));
-			u.setEmail(SADALUtil.getRandomWord(9));
-			u.setSaIsAdmin((i%2==0?true:false));
-			
-			this.userDAO.createUser(u);
-		}
 				
 		final Map<String, Object> queryParams = new HashMap<String, Object>();
 		queryParams.put(SAConstants.NQ_CONST_PARAM_ISADMIN, true);
@@ -277,8 +202,57 @@ public class TestUserDAO extends TestCase {
 		logger.debug("End of testGetUserByIsAdmin()");
 	}
 
+	/**
+	 * Test method to verify if user can be deleted
+	 * 
+	 */
+	public void testDeleteUser() {
+		logger.debug("Start of testDeleteUser()");
+		
+		User user2BeDeleted = new User();
+		user2BeDeleted.setSaUid(222);
+		boolean isUserDeleted = this.userDAO.deleteUser(user2BeDeleted);
+		
+		logger.debug("Is user deletion successfull ? "+isUserDeleted);
+		
+		logger.debug("End of testDeleteUser()");
+		
+	}
 	
-
+	/**
+	 * Test method to verify if user can be deleted
+	 * 
+	 */
+	public void testDeleteUser2() {
+		logger.debug("Start of testDeleteUser()");
+		
+		boolean isUserDeleted = this.userDAO.deleteUser(3, SAConstants.NQ_CONST_PARAM_UID, SAConstants.NQUERY_USER_DELETEUSER_BY_ID_KEY);
+		
+		logger.debug("Is user deletion successfull ? "+isUserDeleted);
+		
+		logger.debug("End of testDeleteUser()");
+		
+	}
+	
+	
+	/**
+	 * Test method to verify if user can be retrieved from database for given username and pwd
+	 * 
+	 */
+	public void testGetUserByUnameNPwd2() {
+		logger.debug("Start of testGetUserByUnameNPwd2()");
+				
+		final Map<String, Object> queryParams = new HashMap<String, Object>();
+		queryParams.put(SAConstants.NQ_CONST_PARAM_USERNAME, "asd1");
+		queryParams.put(SAConstants.NQ_CONST_PARAM_PASSWORD, "asd2");
+		
+		final User user = this.userDAO.getUser(queryParams, SAConstants.NQUERY_USER_GETUSER_BY_UNAME_PWD_KEY);
+		assertNotNull("User object is expected, but what obtained is null !!!", user);
+		
+		logger.debug("End of testGetUserByUnameNPwd2()");
+	}
+	
+	
 	
 	@Override
 	protected void tearDown() throws Exception {
