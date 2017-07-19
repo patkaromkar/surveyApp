@@ -91,8 +91,8 @@ public class UserDAO extends AbstractSurveyAppDAO implements IUserDAO {
 		} else {
 			result = false;
 		}
-		
 		this.session.getTransaction().commit();
+		logger.debug("Is Delete of user successful ? "+result);
 		logger.debug("End of deleteUser(User)");
 		return result;
 	}
@@ -101,10 +101,20 @@ public class UserDAO extends AbstractSurveyAppDAO implements IUserDAO {
 		logger.debug("Start of modifyUser()");
 		// TODO Auto-generated method stub
 		this.session.beginTransaction();
-		this.session.save(user);
+		boolean result = false;
+		
+		User userToBeUpdated = (User) this.session.get(User.class, user.getSaUid());
+		if (null != userToBeUpdated) {
+			this.session.merge(user);
+			result = true;
+		} else {
+			result = false;
+		}
+		
 		this.session.getTransaction().commit();
+		logger.debug("Is Update of user successful ? "+result);
 		logger.debug("End of modifyUser()");
-		return false;
+		return result;
 	}
 
 	public List<User> getUserList(final Map<String, Object> params, final String queryName) {

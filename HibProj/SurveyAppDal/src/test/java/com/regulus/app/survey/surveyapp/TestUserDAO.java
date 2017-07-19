@@ -253,6 +253,21 @@ public class TestUserDAO extends TestCase {
 	}
 	
 	
+	public void testModifyUser() {
+		logger.debug("Start of testModifyUser()");
+		User u = new User();
+		u.setSaUfirstName("xxx");
+		u.setSaULastName("xxx");
+		u.setSaUsername("xxx");
+		u.setSaPassword("xxx");
+		u.setEmail("x@x.x");
+		u.setSaIsAdmin(false);
+		u.setSaUid(6);
+		
+		this.userDAO.modifyUser(u);
+		logger.debug("End of testModifyUser()");
+		
+	}
 	
 	@Override
 	protected void tearDown() throws Exception {

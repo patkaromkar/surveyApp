@@ -19,6 +19,8 @@ public interface IUserDAO {
 	
 	public boolean deleteUser(final int uId, final String paramName, final String queryName);
 	
+	public boolean deleteUser(final User user);
+	
 	public boolean modifyUser(final User user);
 	
 	public List<User> getUserList(final Map<String, Object> params, final String queryName);
