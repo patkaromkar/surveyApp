@@ -24,7 +24,6 @@ public interface SAConstants {
 	String NQ_CONST_PARAM_EMAIL					= "paramEmail";
 	String NQ_CONST_PARAM_ISADMIN				= "paramIsAdmin";
 	String NQ_CONST_PARAM_UID					= "paramUid";
-	
 	String NQUERY_USER_GETALLUSERS_KEY 			= "User.getAllUsers";
 	String NQUERY_USER_GETALLUSERS 				= "from User";
 	String NQUERY_USER_GETUSER_BY_UNAME_PWD_KEY	= "User.getUserByUnameNPwd";
@@ -41,9 +40,35 @@ public interface SAConstants {
 	String NQUERY_USER_GETUSER_BY_ADMIN			= "from User u where u.saIsAdmin = :"+NQ_CONST_PARAM_ISADMIN;
 	String NQUERY_USER_DELETEUSER_BY_ID_KEY		= "User.deleteByUId";
 	String NQUERY_USER_DELETEUSER_BY_ID			= "delete from User where saUid = :"+NQ_CONST_PARAM_UID;
+	
+	
+	String NQ_CONST_PARAM_SS_ID		= "paramSSId";
+	String NQUERY_SS_GETALLSS_KEY	= "SurveyStatus.getALLSS";
+	String NQUERY_SS_GETALLSS		= "from SurveyStatus";
+	String NQUERY_SS_DELETE_SS_KEY	= "SurveyStatus.deleteSSById";
+	String NQUERY_SS_DELETE_SS		= "delete from SurveyStatus ss where ss.saSurveyStatusId = :"+NQ_CONST_PARAM_SS_ID;
+	
+	
+	
+	String NQ_CONST_PARAM_QTYPE_ID			= "paramQTypeId";
+	String NQUERY_QTYPE_GETALL_QTYPES_KEY 	= "QuestionType.getAllQTypes";
+	String NQUERY_QTYPE_GETALL_QTYPES		= "from QuestionType";
+	String NQUERY_QTYPE_DELETE_QTYPE_KEY	= "QuestionType.deleteQTypeById";
+	String NQUERY_QTYPE_DELETE_QTYPE		= "delete from QuestionType qType where qType.saQuestionTypeId = :"+NQ_CONST_PARAM_QTYPE_ID;
 	/*************************************************************************************************************************/
 	
 	
 	
+	/*************************************************************************************************************************/
+	/********************************************Constants for DAL logic ************************************************/
+	/*************************************************************************************************************************/
+	String SS_STATUS_OPEN 		= "Open";
+	String SS_STATUS_DRAFT 		= "Draft";
+	String SS_STATUS_CLOSED		= "Closed";
+	String SS_STATUS_DELETED 	= "Deleted";
 	
+	String QTYPE_MCQ = "MCQ";
+	String QTYPE_SCQ = "SCQ";
+	
+	/*************************************************************************************************************************/
 }

@@ -54,7 +54,7 @@
         <!-- Names the annotated entity class --> 
         <mapping class="com.regulus.app.survey.entities.SurveyStatus"/>
         <mapping class="com.regulus.app.survey.entities.User"/>
-
+		<mapping class="com.regulus.app.survey.entities.QuestionType"/>
     </session-factory>
 
 </hibernate-configuration>

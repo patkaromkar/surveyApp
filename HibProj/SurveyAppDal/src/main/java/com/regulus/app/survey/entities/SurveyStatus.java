@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import com.regulus.app.survey.util.SAConstants;
 
 /**
  * This class represents the master table SURVEYSTATUS.
@@ -22,6 +26,12 @@ import javax.persistence.Table;
  */
 @Entity(name="SurveyStatus")
 @Table(name="sa_surveystatus")
+@NamedQueries(value={
+		@NamedQuery(name=SAConstants.NQUERY_SS_GETALLSS_KEY, 
+							query=SAConstants.NQUERY_SS_GETALLSS),
+		@NamedQuery(name=SAConstants.NQUERY_SS_DELETE_SS_KEY, 
+							query=SAConstants.NQUERY_SS_DELETE_SS)
+})
 public class SurveyStatus {
 
 	@Id
@@ -46,6 +56,5 @@ public class SurveyStatus {
 	public void setSaSurveyStatusName(String saSurveyStatusName) {
 		this.saSurveyStatusName = saSurveyStatusName;
 	}
-	
 	
 }

@@ -35,10 +35,13 @@ public class UserDAO extends AbstractSurveyAppDAO implements IUserDAO {
 		// TODO Auto-generated method stub
 		
 		this.session.beginTransaction();
-		this.session.save(newUser);
+		Integer newUserId = (Integer)this.session.save(newUser);
+		this.session.getTransaction().commit();
+		this.session.beginTransaction();
+		User u = (User)this.session.get(User.class, newUserId.intValue());
 		this.session.getTransaction().commit();
 		logger.debug("End of createUser()");
-		return newUser;
+		return u;
 	}
 
 	public User getUser(final Map<String, Object> params, final String queryName) {

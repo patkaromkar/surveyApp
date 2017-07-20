@@ -1,5 +1,16 @@
 package com.regulus.app.survey.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import com.regulus.app.survey.util.SAConstants;
+
 /**
  * This class represents the master table SURVEYQTYPE.
  * The table will hold possible Types of question a survey can have.
@@ -11,16 +22,32 @@ package com.regulus.app.survey.entities;
  * @author Omkar P
  *
  */
+@Entity(name="QuestionType")
+@Table(name="sa_question_type")
+@NamedQueries(value={
+		@NamedQuery(name=SAConstants.NQUERY_QTYPE_GETALL_QTYPES_KEY,
+						query=SAConstants.NQUERY_QTYPE_GETALL_QTYPES),
+		@NamedQuery(name=SAConstants.NQUERY_QTYPE_DELETE_QTYPE_KEY,
+						query=SAConstants.NQUERY_QTYPE_DELETE_QTYPE)
+})
+
 public class QuestionType {
 
-	private int saQuestionId;
+	@Id
+	@Column(name="qtype_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int saQuestionTypeId;
+	
+	@Column(name="qtype_name",
+			nullable=false,
+			length=5)
 	private String saQuestionType;
 	
 	public int getSaQuestionId() {
-		return saQuestionId;
+		return saQuestionTypeId;
 	}
 	public void setSaQuestionId(int saQuestionId) {
-		this.saQuestionId = saQuestionId;
+		this.saQuestionTypeId = saQuestionId;
 	}
 	public String getSaQuestionType() {
 		return saQuestionType;
@@ -28,6 +55,5 @@ public class QuestionType {
 	public void setSaQuestionType(String saQuestionType) {
 		this.saQuestionType = saQuestionType;
 	}
-	
 	
 }
