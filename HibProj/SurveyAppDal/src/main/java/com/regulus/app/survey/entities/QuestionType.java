@@ -28,7 +28,9 @@ import com.regulus.app.survey.util.SAConstants;
 		@NamedQuery(name=SAConstants.NQUERY_QTYPE_GETALL_QTYPES_KEY,
 						query=SAConstants.NQUERY_QTYPE_GETALL_QTYPES),
 		@NamedQuery(name=SAConstants.NQUERY_QTYPE_DELETE_QTYPE_KEY,
-						query=SAConstants.NQUERY_QTYPE_DELETE_QTYPE)
+						query=SAConstants.NQUERY_QTYPE_DELETE_QTYPE),
+		@NamedQuery(name=SAConstants.NQUERY_QTYPE_GETQTYPE_BY_NAME_KEY,
+						query=SAConstants.NQUERY_QTYPE_GETQTYPE_BY_NAME)
 })
 
 public class QuestionType {

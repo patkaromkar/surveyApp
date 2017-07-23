@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.regulus.app.survey.dao.impl.QTypeDAO;
 import com.regulus.app.survey.entities.QuestionType;
+import com.regulus.app.survey.exceptions.QuestionTypeNotFoundException;
 import com.regulus.app.survey.util.SAConstants;
 
 import junit.framework.TestCase;
@@ -19,7 +20,7 @@ import junit.framework.TestCase;
 public class TestQTypeDAO extends TestCase {
 
 	Logger logger = Logger.getLogger(TestQTypeDAO.class);
-	QTypeDAO qTypeDAO = null;
+	private QTypeDAO qTypeDAO = null;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -84,13 +85,20 @@ public class TestQTypeDAO extends TestCase {
 		
 	}
 	
-	
+	public void testGetQType2() throws QuestionTypeNotFoundException {
+		logger.debug("Start of testGetQType2()");
+		QuestionType questionType = this.qTypeDAO.getQuestionType(SAConstants.QTYPE_MCQ);
+		assertEquals("Expected Survey status is not retrieved", SAConstants.QTYPE_MCQ, questionType.getSaQuestionType());
+		logger.debug("End of testGetQType2()");
+		
+	}
 	
 	@Override
 	protected void tearDown() throws Exception {
 		// TODO Auto-generated method stub
 		logger.debug("Start of tearDown()");
 		super.tearDown();
+		this.qTypeDAO.closeDAO();
 		logger.debug("End of tearDown()");
 	}
 	

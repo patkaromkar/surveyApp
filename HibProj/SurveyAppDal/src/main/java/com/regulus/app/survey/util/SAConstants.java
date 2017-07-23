@@ -11,12 +11,15 @@ public interface SAConstants {
 			+ "by the DAL of Survey App. The supported types are int, short, float, double, long, boolean and String.";
 	String DAL_EX_UNSUPPORTED_QUERYPARAM_GETUSER = "The data type of the query parameter = \"{0}\" is \"{1}\" which is not supported "
 			+ "by the DAL of Survey App. The supported types for getting user by Username and Password is String.";
+	String DAL_EX_SURVEY_STATUS_NOT_FOUND_MSG = "Survey status = {0} is not found in the database.";
+	String DAL_EX_QUESTION_TYPE_NOT_FOUND_MSG = "Question type = {0} is not found in the database.";
 	/*************************************************************************************************************************/
 	
 	
 	/*************************************************************************************************************************/
 	/***********************************************Constants for Named Queries***********************************************/
 	/*************************************************************************************************************************/
+	// USERDAO constants
 	String NQ_CONST_PARAM_USERNAME				= "paramUsername";
 	String NQ_CONST_PARAM_PASSWORD				= "paramPassword";
 	String NQ_CONST_PARAM_FNAME_WILDCARD		= "paramFnameWC";
@@ -41,20 +44,44 @@ public interface SAConstants {
 	String NQUERY_USER_DELETEUSER_BY_ID_KEY		= "User.deleteByUId";
 	String NQUERY_USER_DELETEUSER_BY_ID			= "delete from User where saUid = :"+NQ_CONST_PARAM_UID;
 	
+	// SURVEYSTATUSDAO constants
+	String NQ_CONST_PARAM_SS_ID			= "paramSSId";
+	String NQUERY_SS_GETALLSS_KEY		= "SurveyStatus.getALLSS";
+	String NQUERY_SS_GETALLSS			= "from SurveyStatus";
+	String NQUERY_SS_DELETE_SS_KEY		= "SurveyStatus.deleteSSById";
+	String NQUERY_SS_DELETE_SS			= "delete from SurveyStatus ss where ss.saSurveyStatusId = :"+NQ_CONST_PARAM_SS_ID;
+	String NQ_CONST_PARAM_SS_NAME		= "paramSSname";
+	String NQUERY_SS_GET_SS_BY_NAME		= "from SurveyStatus where saSurveyStatusName = :"+NQ_CONST_PARAM_SS_NAME;
+	String NQUERY_SS_GET_SS_BY_NAME_KEY	= "SurveyStatus.getSSBySSName";
 	
-	String NQ_CONST_PARAM_SS_ID		= "paramSSId";
-	String NQUERY_SS_GETALLSS_KEY	= "SurveyStatus.getALLSS";
-	String NQUERY_SS_GETALLSS		= "from SurveyStatus";
-	String NQUERY_SS_DELETE_SS_KEY	= "SurveyStatus.deleteSSById";
-	String NQUERY_SS_DELETE_SS		= "delete from SurveyStatus ss where ss.saSurveyStatusId = :"+NQ_CONST_PARAM_SS_ID;
+	
+	// QUESTIONTYPE constants
+	String NQ_CONST_PARAM_QTYPE_ID				= "paramQTypeId";
+	String NQUERY_QTYPE_GETALL_QTYPES_KEY 		= "QuestionType.getAllQTypes";
+	String NQUERY_QTYPE_GETALL_QTYPES			= "from QuestionType";
+	String NQUERY_QTYPE_DELETE_QTYPE_KEY		= "QuestionType.deleteQTypeById";
+	String NQUERY_QTYPE_DELETE_QTYPE			= "delete from QuestionType qType where qType.saQuestionTypeId = :"+NQ_CONST_PARAM_QTYPE_ID;
+	String NQ_CONST_PARAM_QTYPE_NAME			= "paramQTypeName";
+	String NQUERY_QTYPE_GETQTYPE_BY_NAME_KEY	= "QuestionType.getQTypeByName";
+	String NQUERY_QTYPE_GETQTYPE_BY_NAME		= "from QuestionType where saQuestionType = :"+NQ_CONST_PARAM_QTYPE_NAME;
 	
 	
+	// SURVEY constants
+	String NQ_CONST_PARAM_SURVEY_CREATEDBY_UID 		= NQ_CONST_PARAM_UID;
+	String NQUERY_SURVEY_GETALL_SURVEYS				= "from Survey";
+	String NQUERY_SURVEY_GETALL_SURVEYS_KEY			= "Survey.getAllSurveys";
+	String NQUERY_SURVEY_GETALL_SURVEY_BY_USER_KEY	= "Survey.getAllSurveysByUser";
+	String NQUERY_SURVEY_GETALL_SURVEY_BY_USER		= "from Survey s where s.saSurveyCreatedBy.saUid = :"+NQ_CONST_PARAM_SURVEY_CREATEDBY_UID;
 	
-	String NQ_CONST_PARAM_QTYPE_ID			= "paramQTypeId";
-	String NQUERY_QTYPE_GETALL_QTYPES_KEY 	= "QuestionType.getAllQTypes";
-	String NQUERY_QTYPE_GETALL_QTYPES		= "from QuestionType";
-	String NQUERY_QTYPE_DELETE_QTYPE_KEY	= "QuestionType.deleteQTypeById";
-	String NQUERY_QTYPE_DELETE_QTYPE		= "delete from QuestionType qType where qType.saQuestionTypeId = :"+NQ_CONST_PARAM_QTYPE_ID;
+	
+	// Question constants
+	String NQ_CONST_PARAM_QUESTION_ID 				= "paramQId";
+	String NQ_CONST_PARAM_SURVEY_ID					= "paramSurveyId";
+	String NQUERY_QUESTION_DELETE_Q_BY_ID_KEY 		= "Question.deleteQById";
+	String NQUERY_QUESTION_DELETE_Q_BY_ID 			= "delete from Question q where q.qId = :"+SAConstants.NQ_CONST_PARAM_QUESTION_ID;
+	String NQUERY_QUESTION_GETALLQS_BY_SURVEY_KEY	= "Question.getAllQuestionsBySurvey";
+	String NQUERY_QUESTION_GETALLQS_BY_SURVEY		= "from Question q where q.qBelongsToSurvey.saSid = :"+NQ_CONST_PARAM_SURVEY_ID;
+	
 	/*************************************************************************************************************************/
 	
 	
@@ -71,4 +98,6 @@ public interface SAConstants {
 	String QTYPE_SCQ = "SCQ";
 	
 	/*************************************************************************************************************************/
+	
+	
 }

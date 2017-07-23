@@ -55,6 +55,8 @@
         <mapping class="com.regulus.app.survey.entities.SurveyStatus"/>
         <mapping class="com.regulus.app.survey.entities.User"/>
 		<mapping class="com.regulus.app.survey.entities.QuestionType"/>
+		<mapping class="com.regulus.app.survey.entities.Survey"/>
+		<mapping class="com.regulus.app.survey.entities.Question"/>
     </session-factory>
 
 </hibernate-configuration>

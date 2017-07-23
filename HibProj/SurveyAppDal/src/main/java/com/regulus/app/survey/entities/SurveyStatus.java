@@ -30,7 +30,9 @@ import com.regulus.app.survey.util.SAConstants;
 		@NamedQuery(name=SAConstants.NQUERY_SS_GETALLSS_KEY, 
 							query=SAConstants.NQUERY_SS_GETALLSS),
 		@NamedQuery(name=SAConstants.NQUERY_SS_DELETE_SS_KEY, 
-							query=SAConstants.NQUERY_SS_DELETE_SS)
+							query=SAConstants.NQUERY_SS_DELETE_SS),
+		@NamedQuery(name=SAConstants.NQUERY_SS_GET_SS_BY_NAME_KEY,
+							query=SAConstants.NQUERY_SS_GET_SS_BY_NAME)	
 })
 public class SurveyStatus {
 
@@ -41,7 +43,8 @@ public class SurveyStatus {
 	
 	@Column(name="status_name",
 			length=10,
-			nullable=false)
+			nullable=false,
+			unique=true)
 	private String saSurveyStatusName;
 	
 	public int getSaSurveyStatusId() {

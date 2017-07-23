@@ -6,17 +6,18 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 
 import com.regulus.app.survey.dao.iface.AbstractSurveyAppDAO;
-import com.regulus.app.survey.dao.iface.ISurveyStatus;
+import com.regulus.app.survey.dao.iface.ISurveyStatusDAO;
 import com.regulus.app.survey.entities.SurveyStatus;
+import com.regulus.app.survey.exceptions.SurveyStatusNotFoundException;
 import com.regulus.app.survey.util.SAConstants;
 
 /**
- * This DAO class is an implementation of the ISurveyStatus.
+ * This DAO class is an implementation of the ISurveyStatusDAO.
  * 
  * @author Omkar P
  *
  */
-public class SurveyStatusDAO extends AbstractSurveyAppDAO implements ISurveyStatus {
+public class SurveyStatusDAO extends AbstractSurveyAppDAO implements ISurveyStatusDAO {
 
 	private final Logger logger = Logger.getLogger(SurveyStatusDAO.class);
 	
@@ -96,6 +97,23 @@ public class SurveyStatusDAO extends AbstractSurveyAppDAO implements ISurveyStat
 		this.session.getTransaction().commit();
 		logger.debug("End of getAllSurveyStatuses()");
 		return sses;
+	}
+
+	public SurveyStatus getSurveyStatus(final String surveyStatus) throws SurveyStatusNotFoundException {
+		// TODO Auto-generated method stub
+		logger.debug("Start of getSurveyStatus(String surveyStatus)");
+		this.session.beginTransaction();
+		Query getSSByNameQuery = this.session.getNamedQuery(SAConstants.NQUERY_SS_GET_SS_BY_NAME_KEY);
+		getSSByNameQuery.setParameter(SAConstants.NQ_CONST_PARAM_SS_NAME, surveyStatus);
+		List<SurveyStatus> sses = getSSByNameQuery.list();
+		this.session.getTransaction().commit();
+		
+		if (sses.size() == 0) {
+			throw new SurveyStatusNotFoundException(surveyStatus);
+		} 
+		
+		logger.debug("End of getSurveyStatus(String surveyStatus)");
+		return sses.get(0);
 	}
 
 	

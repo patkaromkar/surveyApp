@@ -276,7 +276,7 @@ public class TestUserDAO extends TestCase {
 		// TODO Auto-generated method stub
 		logger.debug("Start of tearDown()");
 		super.tearDown();
-		userDAO.closeDAO();
+		this.userDAO.closeDAO();
 		logger.debug("End of tearDown()");
 	}
 }

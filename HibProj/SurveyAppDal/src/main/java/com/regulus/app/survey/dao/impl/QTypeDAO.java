@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import com.regulus.app.survey.dao.iface.AbstractSurveyAppDAO;
 import com.regulus.app.survey.dao.iface.IQTypeDAO;
 import com.regulus.app.survey.entities.QuestionType;
+import com.regulus.app.survey.exceptions.QuestionTypeNotFoundException;
 import com.regulus.app.survey.util.SAConstants;
 
 /**
@@ -97,6 +98,24 @@ public class QTypeDAO extends AbstractSurveyAppDAO implements IQTypeDAO {
 		logger.debug("End of getAllQuestionTypes()");
 		
 		return questionTypes;
+	}
+	
+	
+	public QuestionType getQuestionType(String questionType) throws QuestionTypeNotFoundException {
+		// TODO Auto-generated method stub
+		logger.debug("Start of getQuestionType(String questionType)");
+		this.session.beginTransaction();
+		Query getQtypeByNameQuery = this.session.getNamedQuery(SAConstants.NQUERY_QTYPE_GETQTYPE_BY_NAME_KEY);
+		getQtypeByNameQuery.setString(SAConstants.NQ_CONST_PARAM_QTYPE_NAME, questionType);
+		List<QuestionType> qTypes = getQtypeByNameQuery.list();
+		if (qTypes.size() == 0) {
+			throw new QuestionTypeNotFoundException(questionType);
+		} 
+		
+		logger.debug("End of getQuestionType(String questionType)");
+		this.session.getTransaction().commit();
+		
+		return qTypes.get(0);
 	}
 
 }

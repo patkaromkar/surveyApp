@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.regulus.app.survey.dao.impl.SurveyStatusDAO;
 import com.regulus.app.survey.entities.SurveyStatus;
+import com.regulus.app.survey.exceptions.SurveyStatusNotFoundException;
 import com.regulus.app.survey.util.SAConstants;
 
 import junit.framework.TestCase;
@@ -16,9 +17,9 @@ import junit.framework.TestCase;
  * @author Omkar P
  *
  */
-public class TestSSDAO extends TestCase {
+public class TestSurveyStatusDAO extends TestCase {
 
-	Logger logger = Logger.getLogger(TestSSDAO.class);
+	Logger logger = Logger.getLogger(TestSurveyStatusDAO.class);
 	SurveyStatusDAO ssDAO = null;
 	@Override
 	protected void setUp() throws Exception {
@@ -58,6 +59,13 @@ public class TestSSDAO extends TestCase {
 		
 	}
 	
+	public void testGetSSByName() throws SurveyStatusNotFoundException {
+		logger.debug("Start of testGetSSByName()");
+		SurveyStatus ss = this.ssDAO.getSurveyStatus(SAConstants.SS_STATUS_DRAFT);
+		assertEquals("Expected Survey status is not retrieved", SAConstants.SS_STATUS_DRAFT, ss.getSaSurveyStatusName());
+		logger.debug("End of testGetSSByName()");
+		
+	}
 	
 	public void testCreateSS() {
 		logger.debug("Start of testCreateSS()");
